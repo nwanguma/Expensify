@@ -1,5 +1,8 @@
 {
   "snapshotSerializers": [
     "enzyme-to-json/serializer"
+  ],
+  "setupFilesAfterEnv": [
+    "./src/tests/jest.setup.js"
   ]
 }

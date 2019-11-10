@@ -1,67 +1,64 @@
 import expensesReducer from '../../reducers/expenses';
-import expenses from '../fixtures/expenses';
+import expenses from '../fixtures/expense';
+import moment from 'moment';
+import uuid from 'uuid';
 
-test('should set default state', () => {
-  const state = expensesReducer(undefined, { type: '@@INIT' });
-  expect(state).toEqual([]);
+test('Should setup the default state', () => {
+  const action = {
+    type: '@@INIT'
+  };
+  const state = expensesReducer(undefined, action);
+  expect(state).toEqual([])
+})
+
+test('Should add an expense', () => {
+  const createdAt = moment();
+  const id = uuid();
+  const expense = {
+    description: 'Slytherin flexing',
+    note: 'A trip to Hogwarts',
+    amount: 200,
+    createdAt,
+    id
+  }
+  const action = {
+    type: 'ADD_EXPENSE',
+    expense,
+    id
+  }
+
+  const state = expensesReducer(expenses, action);
+  expect(state).toEqual([...expenses, expense])
 });
 
-test('should remove expense by id', () => {
+test('Should remove an expense', () => {
   const action = {
     type: 'REMOVE_EXPENSE',
     id: expenses[1].id
-  };
+  }
   const state = expensesReducer(expenses, action);
-  expect(state).toEqual([expenses[0], expenses[2]]);
+  expect(state).toEqual([
+    expenses[0], expenses[2]
+  ])
 });
 
-test('should not remove expenses if id not found', () => {
-  const action = {
-    type: 'REMOVE_EXPENSE',
-    id: '-1'
-  };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual(expenses);
-});
-
-test('should add an expense', () => {
-  const expense = {
-    id: '109',
-    description: 'Laptop',
-    note: '',
-    createdAt: 20000,
-    amount: 29500
-  };
-  const action = {
-    type: 'ADD_EXPENSE',
-    expense
-  };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual([...expenses, expense]);
-});
-
-test('should edit an expense', () => {
-  const amount = 122000;
+test('Should edit expense with updates', () => { 
+  const updates = {
+    description: 'Vacation',
+    note: 'A trip to the horn of Africa',
+    amount: 451800,
+  }
   const action = {
     type: 'EDIT_EXPENSE',
-    id: expenses[1].id,
-    updates: {
-      amount
-    }
-  };
+    id: expenses[2].id,
+    updates
+  }
   const state = expensesReducer(expenses, action);
-  expect(state[1].amount).toBe(amount);
-});
-
-test('should not edit an expense if id not found', () => {
-  const amount = 122000;
-  const action = {
-    type: 'EDIT_EXPENSE',
-    id: '-1',
-    updates: {
-      amount
-    }
-  };
-  const state = expensesReducer(expenses, action);
-  expect(state).toEqual(expenses);
-});
+  expect(state[2]).toEqual({
+    description: 'Vacation',
+    note: 'A trip to the horn of Africa',
+    amount: 451800,
+    createdAt: expect.any(Object),
+    id: expect.any(String)
+  })  
+})

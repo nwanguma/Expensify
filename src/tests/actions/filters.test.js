@@ -1,49 +1,44 @@
+import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../../actions/filters';
 import moment from 'moment';
-import {
-  setStartDate,
-  setEndDate,
-  setTextFilter,
-  sortByAmount,
-  sortByDate
-} from '../../actions/filters';
 
-test('should generate set start date action object', () => {
-  const action = setStartDate(moment(0));
-  expect(action).toEqual({
-    type: 'SET_START_DATE',
-    startDate: moment(0)
-  });
-});
-
-test('should generate set end date aciton object', () => {
-  const action = setEndDate(moment(0));
-  expect(action).toEqual({
-    type: 'SET_END_DATE',
-    endDate: moment(0)
-  });
-});
-
-test('should generate set text filter object with text value', () => {
-  const text = 'Something in';
-  const action = setTextFilter(text);
+test('Should generate the text filter action with text', () => {
+  const action = setTextFilter('canard');
   expect(action).toEqual({
     type: 'SET_TEXT_FILTER',
-    text
-  });
-});
+    text: 'canard'
+  })
+})
 
-test('should generate set text filter object with default', () => {
+test('Should generate the text filter action with the default', () => {
   const action = setTextFilter();
   expect(action).toEqual({
     type: 'SET_TEXT_FILTER',
     text: ''
-  });
-});
+  })
+})
 
-test('should generate action object for sort by date', () => {
-  expect(sortByDate()).toEqual({ type: 'SORT_BY_DATE' });
-});
+test('Should generate the sortBy date action', () => {
+  expect(sortByDate().type).toBe('SORT_BY_DATE')
+})
 
-test('should generate action object for sort by amount', () => {
-  expect(sortByAmount()).toEqual({ type: 'SORT_BY_AMOUNT' });
-});
+test('Should generate the sortBy amount action', () => {
+  expect(sortByAmount().type).toBe('SORT_BY_AMOUNT')
+})
+
+test('Should generate the startDate action', () => {
+  const startDate = moment().valueOf();
+  const action = setStartDate(startDate);
+  expect(action).toEqual({
+    type: 'SET_START_DATE',
+    startDate: startDate
+  })
+})
+
+test('Should generate the endDate action', () => {
+  const endDate = moment().valueOf();
+  const action = setEndDate(endDate);
+  expect(action).toEqual({
+    type: 'SET_END_DATE',
+    endDate: endDate
+  })
+})

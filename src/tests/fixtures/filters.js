@@ -5,13 +5,13 @@ const filters = {
   sortBy: 'date',
   startDate: undefined,
   endDate: undefined
-};
+}
 
 const altFilters = {
-  text: 'bills',
+  text: 'filterText',
   sortBy: 'amount',
-  startDate: moment(0),
-  endDate: moment(0).add(3, 'days')
-};
+  startDate: moment().add(10, 'days'),
+  endDate: moment().endOf('month')
+}
 
-export { filters, altFilters };
+export { filters, altFilters }

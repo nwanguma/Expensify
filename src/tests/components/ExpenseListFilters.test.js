@@ -1,77 +1,72 @@
 import React from 'react';
-import { shallow } from 'enzyme';
-import moment from 'moment';
 import { ExpenseListFilters } from '../../components/ExpenseListFilters';
+import { shallow } from 'enzyme';
 import { filters, altFilters } from '../fixtures/filters';
+import moment from 'moment';
 
-let setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate, wrapper;
+let wrapper, setTextFilter, setStartDate, setEndDate, sortByDate, sortByAmount;
+const { startDate, endDate } = altFilters;
 
 beforeEach(() => {
-  setTextFilter = jest.fn();
-  sortByDate = jest.fn();
-  sortByAmount = jest.fn();
   setStartDate = jest.fn();
   setEndDate = jest.fn();
-  wrapper = shallow(
-    <ExpenseListFilters
-      filters={filters}
-      setTextFilter={setTextFilter}
-      sortByDate={sortByDate}
-      sortByAmount={sortByAmount}
-      setStartDate={setStartDate}
-      setEndDate={setEndDate}
-    />
-  );
+  sortByDate = jest.fn();
+  sortByAmount = jest.fn();
+  setTextFilter = jest.fn();
+  wrapper = shallow(<ExpenseListFilters
+    setStartDate={setStartDate}
+    setEndDate={setEndDate}
+    sortByDate={sortByDate}
+    sortByAmount={sortByAmount}
+    setTextFilter={setTextFilter}
+    filters={filters}
+  />);
 });
 
-test('should render ExpenseListFilters correctly', () => {
+test('Should render the ExpenseListFilters component correctly', () => {
   expect(wrapper).toMatchSnapshot();
 });
 
-test('should render ExpenseListFilters with alt data correctly', () => {
+test('Should render the ExpenseListFilters component with a different set of filters data correctly', () => {
   wrapper.setProps({
     filters: altFilters
-  });
+  })
   expect(wrapper).toMatchSnapshot();
 });
 
-test('should handle text change', () => {
-  const value = 'rent';
-  wrapper.find('input').simulate('change', {
-    target: { value }
-  });
-  expect(setTextFilter).toHaveBeenLastCalledWith(value);
-});
-
-test('should sort by date', () => {
-  const value = 'date';
-  wrapper.setProps({
-    filters: altFilters
-  });
-  wrapper.find('select').simulate('change', {
-    target: { value }
-  });
-  expect(sortByDate).toHaveBeenCalled();
-});
-
-test('should sort by amount', () => {
-  const value = 'amount';
-  wrapper.find('select').simulate('change', {
-    target: { value }
-  });
-  expect(sortByAmount).toHaveBeenCalled();
-});
-
-test('should handle date changes', () => {
-  const startDate = moment(0).add(4, 'years');
-  const endDate = moment(0).add(8, 'years');
+test('Should call onDatesChange', () => {
   wrapper.find('DateRangePicker').prop('onDatesChange')({ startDate, endDate });
   expect(setStartDate).toHaveBeenLastCalledWith(startDate);
   expect(setEndDate).toHaveBeenLastCalledWith(endDate);
 });
 
-test('hould handle date focus changes', () => {
-  const calendarFocused = 'endDate';
-  wrapper.find('DateRangePicker').prop('onFocusChange')(calendarFocused);
-  expect(wrapper.state('calendarFocused')).toBe(calendarFocused);
+test('Should call onFocusChange', () => {
+  wrapper.find('DateRangePicker').prop('onFocusChange')(startDate);
+  expect(wrapper.state('calendarFocused')).toEqual(startDate);
 });
+
+test('Should call onTextChange', () => {
+  const filterText = 'text';
+  wrapper.find('input').simulate('change', {
+    target: { value: filterText }
+  });
+  expect(setTextFilter).toHaveBeenLastCalledWith(filterText);
+});
+
+test('Should call onSortChange with sortBy amount', () => {
+  const sortBy = 'amount';
+  wrapper.find('select').simulate('change', {
+    target: { value: sortBy }
+  });
+  expect(sortByAmount).toHaveBeenCalled();
+});
+
+test('Should call onSortChange with sortBy date', () => {
+  const sortBy = 'date';
+  wrapper.find('select').simulate('change', {
+    target: { value: sortBy }
+  });
+  expect(sortByDate).toHaveBeenCalled();
+});
+
+

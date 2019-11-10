@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`should render ExpenseListFilters correctly 1`] = `
+exports[`Should render the ExpenseListFilters component correctly 1`] = `
 <div>
   <input
     onChange={[Function]}
@@ -70,7 +70,7 @@ exports[`should render ExpenseListFilters correctly 1`] = `
         "jumpToNextMonth": "Move forward to switch to the next month",
         "jumpToPrevMonth": "Move backward to switch to the previous month",
         "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-        select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
         "keyboardShortcuts": "Keyboard Shortcuts",
         "leftArrowRightArrow": "Right and left arrow keys",
         "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -104,12 +104,12 @@ exports[`should render ExpenseListFilters correctly 1`] = `
 </div>
 `;
 
-exports[`should render ExpenseListFilters with alt data correctly 1`] = `
+exports[`Should render the ExpenseListFilters component with a different set of filters data correctly 1`] = `
 <div>
   <input
     onChange={[Function]}
     type="text"
-    value="bills"
+    value="filterText"
   />
   <select
     onChange={[Function]}
@@ -135,7 +135,7 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
     disabled={false}
     displayFormat={[Function]}
     enableOutsideDays={false}
-    endDate={"1970-01-04T00:00:00.000Z"}
+    endDate={"1970-01-31T22:59:59.999Z"}
     endDateId="endDate"
     endDatePlaceholderText="End Date"
     firstDayOfWeek={null}
@@ -174,7 +174,7 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
         "jumpToNextMonth": "Move forward to switch to the next month",
         "jumpToPrevMonth": "Move backward to switch to the previous month",
         "keyboardNavigationInstructions": "Press the down arrow key to interact with the calendar and
-        select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
+  select a date. Press the question mark key to get the keyboard shortcuts for changing dates.",
         "keyboardShortcuts": "Keyboard Shortcuts",
         "leftArrowRightArrow": "Right and left arrow keys",
         "moveFocusByOneDay": "Move backward (left) and forward (right) by one day",
@@ -199,7 +199,7 @@ exports[`should render ExpenseListFilters with alt data correctly 1`] = `
     screenReaderInputMessage=""
     showClearDates={true}
     showDefaultInputIcon={false}
-    startDate={"1970-01-01T00:00:00.000Z"}
+    startDate={"1970-01-11T00:00:00.000Z"}
     startDateId="startDate"
     startDatePlaceholderText="Start Date"
     withFullScreenPortal={false}

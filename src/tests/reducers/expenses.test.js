@@ -42,7 +42,7 @@ test('Should remove an expense', () => {
   ])
 });
 
-test('Should edit expense with updates', () => { 
+test('Should edit expense with updates', () => {
   const updates = {
     description: 'Vacation',
     note: 'A trip to the horn of Africa',
@@ -60,5 +60,19 @@ test('Should edit expense with updates', () => {
     amount: 451800,
     createdAt: expect.any(Object),
     id: expect.any(String)
-  })  
+  })
+})
+
+test('Should return the expenses when action is dispatched', () => {
+  const expenseData = {};
+  expenses.forEach(({ id, description, note, createdAt, amount }) => {
+    expenseData[id] = { description, note, createdAt, amount };
+  });
+
+  const action = {
+    type: 'SET_EXPENSES',
+    expenses: expenseData
+  }
+  const expensesData = expensesReducer(undefined, action);
+  expect(expensesData).toEqual(expenseData);
 })

@@ -8,7 +8,7 @@ exports[`Should render the EditExpensePage correctly 1`] = `
         "amount": 84800,
         "createdAt": "1969-12-01T00:00:00.000Z",
         "description": "Vacation",
-        "id": "einabahajkahajahaoiaka",
+        "id": "2",
         "note": "A trip to South Sudan",
       }
     }

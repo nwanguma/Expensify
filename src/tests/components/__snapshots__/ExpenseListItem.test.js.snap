@@ -3,7 +3,7 @@
 exports[`Should render the expenseListItem component with props 1`] = `
 <div>
   <Link
-    to="/edit/ioeyuienjdsjaoiihepo"
+    to="/edit/0"
   >
     <h3>
       Drinks

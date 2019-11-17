@@ -1,0 +1,27 @@
+.btn {
+  font-family: 'Lato', Arial, Helvetica, sans-serif;
+  background-color: rgb(36, 36, 136);
+  color: rgb(202, 196, 196);
+  padding: 1rem 3rem;
+  border: none;  
+}
+
+.btn--login {
+  margin-top: 1.5rem;
+}
+
+.btn--logout {
+  border: 1px solid rgb(202, 196, 196);
+  padding: 0.5rem 1.5rem;
+}
+
+.btn--remove {
+  display: inline-block;
+  padding: .5rem .8rem;
+  border-radius: 20px;
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(255, 0, 0, 0.705);
+  cursor: pointer;
+}

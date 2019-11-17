@@ -2,10 +2,14 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
+import uuid from 'uuid';
+import 'react-dates/initialize';
 
 export class ExpenseListFilters extends React.Component {
   state = {
-    calendarFocused: null
+    calendarFocused: null,
+    startDateId: uuid(),
+    endDateId: uuid()
   };
   onDatesChange = ({ startDate, endDate }) => {
     this.props.setStartDate(startDate);
@@ -26,29 +30,38 @@ export class ExpenseListFilters extends React.Component {
   };
   render() {
     return (
-      <div>
-        <input
-          type="text"
-          value={this.props.filters.text}
-          onChange={this.onTextChange}
-        />
-        <select
-          value={this.props.filters.sortBy}
-          onChange={this.onSortChange}
-        >
-          <option value="date">Date</option>
-          <option value="amount">Amount</option>
-        </select>
-        <DateRangePicker
-          startDate={this.props.filters.startDate}
-          endDate={this.props.filters.endDate}
-          onDatesChange={this.onDatesChange}
-          focusedInput={this.state.calendarFocused}
-          onFocusChange={this.onFocusChange}
-          showClearDates={true}
-          numberOfMonths={1}
-          isOutsideRange={() => false}
-        />
+      <div className="filters-container">
+        <div className="input-container">
+          <input
+            placeholder="Search expenses"
+            type="text"
+            value={this.props.filters.text}
+            onChange={this.onTextChange}
+            className="search"
+          />
+          <select
+            value={this.props.filters.sortBy}
+            onChange={this.onSortChange}
+            className="select"
+          >
+            <option value="date">Date</option>
+            <option value="amount">Amount</option>
+          </select>
+
+          <DateRangePicker
+            startDate={this.props.filters.startDate}
+            startDateId={this.state.startDateId}
+            endDate={this.props.filters.endDate}
+            endDateId={this.state.endDateId}
+            onDatesChange={this.onDatesChange}
+            focusedInput={this.state.calendarFocused}
+            onFocusChange={this.onFocusChange}
+            showClearDates={true}
+            numberOfMonths={1}
+            isOutsideRange={() => false}
+            small={true}
+          />
+        </div>
       </div>
     );
   }

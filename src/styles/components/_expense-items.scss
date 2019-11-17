@@ -1,0 +1,67 @@
+.expense-item-container {
+  padding: 2rem 4rem;
+  width: 85%;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+
+  &:nth-child(even) {
+    background-color: rgb(252, 251, 251);
+    }
+
+  &:nth-child(odd) {
+    background-color: lavender;    
+  }
+
+  @media screen and (max-width: 900px) {
+    justify-content: space-between;
+    widtH: 100%;
+    padding: 1rem .5rem;
+  }
+}
+
+
+.expense__content {
+  &--link {
+    text-decoration: none;
+    width: 40%;
+    flex: 0 1 40%;
+
+    @media screen and (max-width: 90rem) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &--description {
+    color: black;
+    display: inline-block;
+    padding: 0 2rem;
+    font-size: 1.5rem;
+
+    &::first-letter {
+      text-transform: uppercase;
+    }
+  }
+
+  &--amount {
+    font-weight: bold;
+    color: red;
+    flex: 0 0 20%; 
+    text-align: left;
+    display: inline-block;
+    justify-self: start;
+    
+    @media screen and (max-width: 90rem) {
+      font-size: 1.5rem;
+    }
+  }
+
+  &--date {
+    flex: 0 0 20%;
+
+    @media screen and (max-width: 450px) {
+      display: none;
+    }
+  }
+}

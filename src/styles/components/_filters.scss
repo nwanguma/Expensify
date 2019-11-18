@@ -17,3 +17,11 @@
   }
 }
 
+.select, .search {
+  height: 3rem;
+
+  @media screen and (max-width: 850px) {
+    margin-bottom: 1rem;
+  }
+}
+

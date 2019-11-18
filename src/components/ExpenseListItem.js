@@ -26,7 +26,7 @@ class ExpenseListItem extends React.Component {
         <span className="expense__text expense__content--date">
           {moment(this.props.createdAt).format('MMMM Do, YYYY')}
         </span>
-        <a onClick={this.onRemove} className="btn btn--remove" role="button">X</a>
+        <a onClick={this.onRemove} className="btn btn--remove" role="button">x</a>
       </div>
     )
   }
